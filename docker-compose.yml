@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  golang:
+    image: golang:latest
+    working_dir: /app
+    command: sh -c "go run server.go"
+    ports: 
+      - 3000:3000
+    volumes:
+      - .:/app:cached
+
+  gatsby:
+    tty: true
+    build: .
+    working_dir: /app/gatsby
+    command: >
+      sh -c "yarn && yarn develop"
+    ports:
+      - 3001:3001
+      - 33143:33143
+    volumes:
+      - .:/app:cached
