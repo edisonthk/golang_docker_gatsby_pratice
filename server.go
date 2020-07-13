@@ -16,16 +16,16 @@ type User struct {
   Email string `json:"email"`
 }
 
-var users []User
-
 func GetSampleText(c *gin.Context) {
   c.JSON(200, "サーバーからのテキストになります。")
 }
 
 func GetUsers(c *gin.Context) {  
   
-  users = append(users, User{ID: "1", Name: "Yama", Email:"yama@gmail.com"})
-  users = append(users, User{ID: "2", Name: "Tanaka", Email:"tanaka@gmail.com"})
+  users := []User {
+    User{ID: "1", Name: "Yama", Email:"yama@gmail.com"},
+    User{ID: "2", Name: "Tanaka", Email:"tanaka@gmail.com"},
+  }
   
   c.JSON(200, users)
 }
